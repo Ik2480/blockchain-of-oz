@@ -1,26 +1,85 @@
 @import "tailwindcss";
 
+/* -------------------------------
+   🌌 Global Theme Variables
+---------------------------------*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg: #0D1117;
+  --color-text: #E6E6E6;
+  --color-primary: #00FFFF;
+  --color-secondary: #66B2FF;
+  --color-card: #161B22;
+
+  /* Global layout controls */
+  --section-padding-x: 1rem;       /* default horizontal padding */
+  --section-max-width: 1200px;     /* center content nicely */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* -------------------------------
+   🌐 Global Reset & Base Styles
+---------------------------------*/
+* {
+  
+  padding: 02;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Inter', 'Space Grotesk', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
+
+/* -------------------------------
+   📏 Global Section Layout
+---------------------------------*/
+section {
+  padding-left: var(--section-padding-x);
+  padding-right: var(--section-padding-x);
+  max-width: var(--section-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* -------------------------------
+   ✨ Global Transitions
+---------------------------------*/
+a,
+button {
+  transition: all 0.15s ease-in-out;
+}
+
+a:hover,
+button:hover {
+  filter: drop-shadow(0 0 8px var(--color-primary));
+}
+
+/* -------------------------------
+   🎚 Scrollbar Styling
+---------------------------------*/
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0d12;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
