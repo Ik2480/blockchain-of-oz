@@ -1,12 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Wallet, Menu, X } from "lucide-react";
-import Image from "next/image";
 
-export default function Navbar() {
+export default function Navbar({ setNavbarHeight }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navRef = useRef();
+
+  useEffect(() => {
+    if (navRef.current && typeof setNavbarHeight === "function") {
+      setNavbarHeight(navRef.current.offsetHeight);
+    }
+
+    const handleResize = () => {
+      if (navRef.current && typeof setNavbarHeight === "function") {
+        setNavbarHeight(navRef.current.offsetHeight);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [setNavbarHeight]);
 
   const mainLinks = [
     { name: "Token", href: "/token" },
@@ -20,17 +35,13 @@ export default function Navbar() {
     { name: "Blog", href: "/blog" },
   ];
 
-  const socialIcons = [
-    { name: "X", href: "#", src: "/icons/x.svg" },
-    { name: "Discord", href: "#", src: "/icons/discord.svg" },
-    { name: "Telegram", href: "#", src: "/icons/telegram.svg" },
-    { name: "YouTube", href: "#", src: "/icons/youtube.svg" },
-  ];
-
   return (
-    <header className="sticky top-0 z-50 border-b border-cyan-500/20 bg-[var(--color-bg)]">
+    <header
+      ref={navRef}
+      className="sticky top-0 z-50 border-b border-cyan-500/20 bg-[var(--color-bg)]"
+    >
       {/* MAIN NAVBAR */}
-      <div className="container mx-auto flex items-center justify-between px-6  md:py-2.5">
+      <div className="container mx-auto flex items-center justify-between px-6 md:py-2.5">
         {/* Logo */}
         <Link
           href="/"
@@ -39,7 +50,7 @@ export default function Navbar() {
           BLOCKCHAIN OF OZ
         </Link>
 
-        {/* Desktop Main Links + Wallet */}
+        {/* Desktop Links + Wallet */}
         <div className="hidden md:flex items-center gap-6">
           <nav className="flex gap-6">
             {mainLinks.map((link) => (
@@ -70,27 +81,8 @@ export default function Navbar() {
 
       {/* SUB NAVBAR */}
       <div className="border-t border-cyan-500/10 bg-[#0D1117]">
-        <div className="container mx-auto flex justify-between px-6 py-1.5">
-          {/* Social Icons (left-aligned) */}
-          <div className="flex items-center gap-2">
-            {socialIcons.map((icon) => (
-              <Link
-                key={icon.name}
-                href={icon.href}
-                className="w-5 h-5 opacity-80 hover:opacity-100 transition"
-              >
-                <Image
-                  src={icon.src}
-                  alt={icon.name}
-                  width={20}
-                  height={20}
-                />
-              </Link>
-            ))}
-          </div>
-
-          {/* Sublinks (centered) */}
-          <div className="flex gap-4 absolute left-1/2 transform -translate-x-1/2">
+        <div className="container mx-auto flex justify-center px-6 py-1.5">
+          <nav className="flex gap-4">
             {subLinks.map((link) => (
               <Link
                 key={link.name}
@@ -100,7 +92,7 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
-          </div>
+          </nav>
         </div>
       </div>
 
@@ -119,7 +111,6 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {/* Sub-links */}
             <div className="border-t border-cyan-500/10 w-full pt-3 flex flex-col items-center gap-1">
               {subLinks.map((link) => (
                 <Link
@@ -131,29 +122,8 @@ export default function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              {/* Social Icons in mobile menu */}
-              <div className="flex justify-center gap-4 mt-3">
-                {socialIcons.map((icon) => (
-                  <Link
-                    key={icon.name}
-                    href={icon.href}
-                   target="_blank"
-                   rel="noopener noreferrer"
-                  className=" rounded-full p-2 hover:scale-110 hover:shadow-[0_0_10px_#00FFFF] transition-all duration-300"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    <Image
-                      src={icon.src}
-                      alt={icon.name}
-                      width={24}
-                      height={24}
-                    />
-                  </Link>
-                ))}
-              </div>
             </div>
 
-            {/* Wallet Button */}
             <button className="flex items-center gap-2 px-3 py-1.5 mt-3 rounded-lg bg-cyan-500/10 border border-cyan-400 text-cyan-400 hover:bg-cyan-500/20 hover:drop-shadow-[0_0_6px_#00FFFF] transition text-sm">
               <Wallet className="w-4 h-4" />
               Connect Wallet

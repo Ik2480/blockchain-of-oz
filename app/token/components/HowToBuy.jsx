@@ -31,7 +31,6 @@ const steps = [
     link: "https://bridge.example.com/", // replace with actual link
   },
   {
-    // Sixth box for contract address
     title: "Token Address",
     address: "ExampleAddress1234567890ABCDEF",
     solscan: "https://solscan.io/token/ExampleAddress1234567890ABCDEF",
@@ -48,32 +47,37 @@ export default function HowToBuy() {
   };
 
   return (
-    <motion.div
-      className="bg-[var(--color-card)] p-12 shadow-lg rounded-2xl mx-10"
+    <motion.section
+      className="bg-[var(--color-card)] p-6 sm:p-10 rounded-2xl shadow-lg mx-4 sm:mx-10 my-12"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-xl font-semibold text-cyan-300 mb-6 text-center">
+      {/* Title */}
+      <h2 className="text-3xl font-bold text-cyan-400 text-center mb-8">
         How to Buy $BOOZ
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-fr">
+      {/* Steps as single column */}
+      <div className="flex flex-col ml-10 mr-10 gap-4">
         {steps.map((step, index) => (
-          <div
+          <motion.div
             key={index}
-            className="flex flex-col justify-between p-4 rounded-lg bg-cyan-500/10"
+            className="bg-cyan-500/10 rounded-xl p-5 flex flex-col gap-3 hover:shadow-[0_0_10px_#00FFFF] transition-shadow duration-300"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.05 }}
           >
-            {/* Steps 1-5 */}
+            {/* Step 1-5 */}
             {step.linkText ? (
               <>
-                <div className="flex items-start gap-3">
-                  <span className="font-bold text-xl text-cyan-400 flex-shrink-0">
+                <div className="flex gap-3 items-start">
+                  <span className="font-bold text-lg text-cyan-400">
                     {index + 1}.
                   </span>
                   <p className="text-gray-300">{step.text}</p>
                 </div>
-                <div className="flex justify-end items-center gap-1 mt-0">
+                <div className="flex justify-end">
                   <a
                     href={step.link}
                     target="_blank"
@@ -85,19 +89,16 @@ export default function HowToBuy() {
                 </div>
               </>
             ) : (
-              // Sixth box: Contract Address in 3 rows
+              // Last Step: Token Address
               <div className="flex flex-col gap-3">
-                {/* Row 1: Title */}
                 <span className="text-cyan-300 font-semibold text-lg">
                   {step.title}
                 </span>
-                {/* Row 2: Address */}
                 <span className="text-gray-300 break-all">{step.address}</span>
-                {/* Row 3: Buttons */}
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <button
                     onClick={() => handleCopy(step.address)}
-                    className="flex items-center gap-1 px-3 py-1 rounded-lg bg-cyan-400/20 text-cyan-300 hover:bg-cyan-400/30 font-semibold transition"
+                    className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-cyan-400/20 text-cyan-300 hover:bg-cyan-400/30 font-semibold transition"
                   >
                     <Copy className="w-4 h-4" />
                     {copied ? "Copied!" : "Copy Address"}
@@ -106,16 +107,16 @@ export default function HowToBuy() {
                     href={step.solscan}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 px-3 py-1 rounded-lg bg-cyan-400/20 text-cyan-300 hover:bg-cyan-400/30 font-semibold transition"
+                    className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-cyan-400/20 text-cyan-300 hover:bg-cyan-400/30 font-semibold transition"
                   >
                     View on Solscan <ExternalLink className="w-4 h-4" />
                   </a>
                 </div>
               </div>
             )}
-          </div>
+          </motion.div>
         ))}
       </div>
-    </motion.div>
+    </motion.section>
   );
 }
