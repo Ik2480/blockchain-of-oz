@@ -7,17 +7,17 @@ import { motion } from "framer-motion";
 const HeroSection = ({ navbarHeight = 0 }) => {
   return (
     <section
-      className="relative w-full h-auto min-h-[80vh] flex flex-col items-center justify-center bg-[var(--color-bg)] py-12 px-4 md:px-6"
+      className="relative w-full h-auto flex flex-col items-center justify-center bg-[var(--color-bg)] py-12 px-4 md:py-20 lg:py-24 md:px-6"
       style={{ paddingTop: navbarHeight }} // Dynamic top offset
     >
       {/* Top Heading Div */}
-      <div className="container mx-auto text-center mb-10">
+      <div className="container mx-auto text-center mb-10 md:mb-12">
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <h1 className="text-4xl md:text-5xl font-extrabold text-cyan-400  mt-8 mb-4">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-cyan-400 mt-8 mb-4">
             Blockchain of Oz – $BOOZ Live
           </h1>
         </motion.div>
@@ -67,7 +67,7 @@ const HeroSection = ({ navbarHeight = 0 }) => {
 
         {/* Right Side (Hero Image) */}
         <motion.div
-          className="hidden md:flex w-full md:w-2/5 justify-center items-center"
+          className="w-full md:w-2/5 flex justify-center items-center"
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
