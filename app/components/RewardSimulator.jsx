@@ -19,14 +19,14 @@ export default function RewardSimulator() {
   };
 
   return (
-    <div className="bg-[#161B22] border border-[#00FFFF] p-6 rounded-lg shadow-lg space-y-4 hover:shadow-[0_0_15px_#00FFFF] transition-shadow duration-300">
+    <div className="bg-[#161B22]  p-6 rounded-lg shadow-lg space-y-4 hover:shadow-[0_0_15px_#00FFFF] transition-shadow duration-300">
       <h3 className="text-xl font-semibold">Reward Simulator</h3>
       <input
         type="text"
-        placeholder="$BOOZ Holdings"
+        placeholder="Enter your $BOOZ Holdings"
         value={holdings}
         onChange={(e) => setHoldings(e.target.value)}
-        className="w-full bg-[#0D1117] border border-[#00FFFF] px-3 py-2 rounded text-[#E6E6E6] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+        className="w-full bg-[#0D1117]  px-3 py-2 rounded text-[#E6E6E6] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
       />
       <button
         onClick={generateReward}

@@ -22,11 +22,11 @@ export default function DashboardPage() {
       </h1>
 
       {/* Main Dashboard Layout */}
-      <div className="flex flex-col md:flex-row items-start md:space-x-8">
+      <div className="flex flex-col md:flex-row items-center md:space-x-8">
         {/* Left Side (30%) */}
-        <div className="w-full md:w-3/10 space-y-8">
+        <div className="w-full md:w-3/10  ml-10 space-y-8">
           {/* Connected BOOZ Balance Card */}
-          <div className="bg-[#161B22] border border-[#00FFFF] px-6 py-4 rounded-lg shadow-lg hover:shadow-[0_0_15px_#00FFFF] transition-shadow duration-300 w-full text-center">
+          <div className="bg-[#161B22]  px-6 py-4 rounded-lg shadow-lg hover:shadow-[0_0_15px_#00FFFF] transition-shadow duration-300 w-full text-center">
             <h2 className="text-xl font-semibold">Connected BOOZ Balance</h2>
             <p className="mt-2 text-[#00FFFF] text-lg">$BOOZ Balance: {balance || "N/A"}</p>
           </div>
@@ -37,7 +37,7 @@ export default function DashboardPage() {
           {/* DAO Teaser Card */}
           <motion.div
             whileHover={{ scale: 1.03 }}
-            className="bg-[#161B22] border border-[#00FFFF] p-6 rounded-lg shadow-lg hover:shadow-[0_0_15px_#00FFFF] transition-shadow duration-300 w-full"
+            className="bg-[#161B22]  p-6 rounded-lg shadow-lg hover:shadow-[0_0_15px_#00FFFF] transition-shadow duration-300 w-full"
           >
             <h3 className="text-xl font-semibold mb-4">Vote on Next Feature?</h3>
             <ul className="space-y-2">
@@ -56,8 +56,8 @@ export default function DashboardPage() {
           <Image
             src="/herocryptonomics.webp"
             alt="Hero Illustration"
-            width={500}
-            height={500}
+            width={400}
+            height={400}
             className="object-contain"
             priority
           />
